@@ -8,23 +8,30 @@
   <title>image carousel</title>
   <style>
     * {
+      margin: 0; 
+      padding: 0;
       box-sizing: border-box;
     }
-    body{
+    .container{
+      width: 100vw;
+      height: 100vh;
       background-color: rgb(232, 221, 242);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
 
     .slider {
-      width: 560px;
-      height: 400px;
+      width: 60vw;
+      height: 70vh;
       overflow: hidden;
-      margin: 100px auto;
       border-radius: 20px;
     }
 
     .slider-wrapper {
       width: 100%;
-      height: 320px;
+      height: 60vh;
     }
 
     .slider-wrapper img {
@@ -34,8 +41,8 @@
     }
 
     .slider-footer {
-      height: 80px;
-      background-color: rgb(100, 67, 68);
+      height: 10vh;
+      background-color: rgb(142, 188, 237);
       padding: 12px 12px 0 12px;
       position: relative;
     }
@@ -43,7 +50,7 @@
     .slider-footer .toggle {
       position: absolute;
       right: 0;
-      top: 12px;
+      top: 4vh;
       display: flex;
     }
 
@@ -66,12 +73,12 @@
     .slider-footer p {
       margin: 0;
       color: #fff;
-      font-size: 18px;
+      font-size: 20px;
       margin-bottom: 10px;
     }
 
     .slider-indicator {
-      margin: 0;
+      margin: 0 auto;
       padding: 0;
       list-style: none;
       display: flex;
@@ -79,8 +86,8 @@
     }
 
     .slider-indicator li {
-      width: 8px;
-      height: 8px;
+      width: 12px;
+      height: 12px;
       margin: 4px;
       border-radius: 50%;
       background: #fff;
@@ -89,33 +96,35 @@
     }
 
     .slider-indicator li.active {
-      width: 12px;
-      height: 12px;
+      width: 16px;
+      height: 16px;
       opacity: 1;
     }
   </style>
 </head>
 
 <body>
-  <div class="slider">
-    <div class="slider-wrapper">
-      <img src="./images/desktop_1.jpg" alt="" />
-    </div>
-    <div class="slider-footer">
-      <p>Exploring the Coastlines of Urban Cities!</p>
-      <ul class="slider-indicator">
-        <li class="active"></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-      <div class="toggle">
-        <button class="prev">&lt;</button>
-        <button class="next">&gt;</button>
+  <div class="container">
+    <div class="slider">
+      <div class="slider-wrapper">
+        <img src="./images/desktop_1.jpg" alt="" />
+      </div>
+      <div class="slider-footer">
+        <p>Exploring the Coastlines of Urban Cities!</p>
+        <ul class="slider-indicator">
+          <li class="active"></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <div class="toggle">
+          <button class="prev">&lt;</button>
+          <button class="next">&gt;</button>
+        </div>
       </div>
     </div>
   </div>
@@ -123,12 +132,12 @@
     //  初始数据
     const data = [
       { url: './images/desktop_1.jpg', title: 'Exploring the Coastlines of Urban Cities!', color: 'rgb(142, 188, 237)' },
-      { url: './images/desktop_2.jpg', title: 'Cultural Kaleidoscope in Urban Landscapes！', color: 'rgb(13, 22, 23)' },
-      { url: './images/desktop_3.jpg', title: 'Exploring Unique Urban Market Cultures！', color: 'rgb(36, 31, 33)' },
+      { url: './images/desktop_2.jpg', title: 'Cultural Kaleidoscope in Urban Landscapes！', color: 'rgb(46, 68, 150)' },
+      { url: './images/desktop_3.jpg', title: 'Exploring Unique Urban Market Cultures！', color: 'rgb(144, 145, 148)' },
       { url: './images/desktop_4.jpg', title: 'Aerial Views from Urban Ferris Wheels!', color: 'rgb(74, 125, 160)' },
-      { url: './images/desktop_5.jpg', title: 'Serene Moments in Urban Parks!', color: 'rgb(67, 90, 92)' },
+      { url: './images/desktop_5.jpg', title: 'Serene Moments in Urban Parks!', color: 'rgb(103, 79, 88)' },
       { url: './images/desktop_6.jpg', title: 'Fusion of Modern Architecture and Nature!', color: 'rgb(166, 131, 143)' },
-      { url: './images/desktop_7.jpg', title: 'Nightscapes of Urban Splendor！', color: 'rgb(53, 29, 25)' },
+      { url: './images/desktop_7.jpg', title: 'Nightscapes of Urban Splendor！', color: 'rgb(16, 14, 26)' },
       { url: './images/desktop_8.jpg', title: 'Cultural Treasures in Old Alleyways！', color: 'rgb(70, 67, 66)' },
     ]
 
