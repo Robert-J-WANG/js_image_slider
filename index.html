@@ -8,14 +8,15 @@
   <title>image carousel</title>
   <style>
     * {
-      margin: 0; 
+      margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    .container{
+
+    .container {
       width: 100vw;
       height: 100vh;
-      background-color: rgba(210, 236, 247,.5);
+      background-color: rgba(210, 236, 247, .5);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -60,7 +61,7 @@
       height: 28px;
       appearance: none;
       border: none;
-      background: rgba(10, 236, 29,.3);
+      background: rgba(10, 236, 29, .3);
       color: #fff;
       border-radius: 4px;
       cursor: pointer;
@@ -141,70 +142,75 @@
       { url: './images/desktop_8.jpg', title: 'Cultural Treasures in Old Alleyways！', color: 'rgb(70, 67, 66)' },
     ]
 
-    let i = 0 // 图片张数的全局变量
-    // 1.3 获取DOM元素
-    const img = document.querySelector('.slider-wrapper img')
-    const p = document.querySelector('.slider-footer p')
-    const footer = document.querySelector('.slider-footer')
-    const slider=document.querySelector('.slider')
+    // 给window注册加载事件，保证资源加载完毕再执行回调函数
+    window.addEventListener('load', function (e) {
 
-    // 1 右边模块
-    // 1.1 获取事件源
-    const next = document.querySelector('.next')
-    // 1.2 注册时间
-    next.addEventListener('click', function (e) {
-      i++
-      // 1.6 无缝连接部分
-      if (i === data.length) {
-        i = 0
+      let i = 0 // 图片张数的全局变量
+      // 1.3 获取DOM元素
+      const img = document.querySelector('.slider-wrapper img')
+      const p = document.querySelector('.slider-footer p')
+      const footer = document.querySelector('.slider-footer')
+      const slider = document.querySelector('.slider')
+
+      // 1 右边模块
+      // 1.1 获取事件源
+      const next = document.querySelector('.next')
+      // 1.2 注册时间
+      next.addEventListener('click', function (e) {
+        i++
+        // 1.6 无缝连接部分
+        if (i === data.length) {
+          i = 0
+        }
+        toggle()
+      })
+
+      // 2 左边模块
+      // 2.1 获取事件源
+      const prev = document.querySelector('.prev')
+      // 2.2 注册时间
+      prev.addEventListener('click', function (e) {
+
+        i--
+        // 2.6 无缝连接部分
+        if (i < 0) {
+          i = data.length - 1
+        }
+        toggle()
+      })
+
+      //3. 封装渲染页面的函数
+      function toggle() {
+        // 1.4 渲染页面内容
+        // 渲染图片内容
+        img.src = data[i].url
+        // 渲染文字内容
+        p.innerHTML = data[i].title
+        // 渲染背景颜色
+        footer.style.backgroundColor = data[i].color
+        // 1.5 设置小圆点部分
+        // 清除原先的
+        document.querySelector('.slider-indicator .active').classList.remove('active')
+        // 设置现在的
+        document.querySelector(`.slider-indicator li:nth-child(${i + 1})`).classList.add('active')
       }
-      toggle()
-    })
-
-    // 2 左边模块
-    // 2.1 获取事件源
-    const prev = document.querySelector('.prev')
-    // 2.2 注册时间
-    prev.addEventListener('click', function (e) {
-
-      i--
-      // 2.6 无缝连接部分
-      if (i <0) {
-        i = data.length-1
-      }
-      toggle()
-    })
-
-    //3. 封装渲染页面的函数
-    function toggle(){
-       // 1.4 渲染页面内容
-      // 渲染图片内容
-      img.src = data[i].url
-      // 渲染文字内容
-      p.innerHTML = data[i].title
-      // 渲染背景颜色
-      footer.style.backgroundColor = data[i].color
-      // 1.5 设置小圆点部分
-      // 清除原先的
-      document.querySelector('.slider-indicator .active').classList.remove('active')
-      // 设置现在的
-      document.querySelector(`.slider-indicator li:nth-child(${i + 1})`).classList.add('active')
-    }
-    //4. 小圆点自动播放模块
-    let timer=setInterval(function(){
-      next.click() // 调用JS的自动点击事件
-    },1500)
-
-    // 5. 鼠标移入，清除定时器
-    slider.addEventListener('mouseenter',function(e) {
-      clearInterval(timer)
-    })
-
-    // 6. 鼠标移出，重启定时器
-    slider.addEventListener('mouseleave',function(e) {
-      timer=setInterval(function(){
+      //4. 小圆点自动播放模块
+      let timer = setInterval(function () {
         next.click() // 调用JS的自动点击事件
-      },1500)
+      }, 1500)
+
+      // 5. 鼠标移入，清除定时器
+      slider.addEventListener('mouseenter', function (e) {
+        clearInterval(timer)
+      })
+
+      // 6. 鼠标移出，重启定时器
+      slider.addEventListener('mouseleave', function (e) {
+        timer = setInterval(function () {
+          next.click() // 调用JS的自动点击事件
+        }, 1500)
+      })
+
     })
 
   </script>
